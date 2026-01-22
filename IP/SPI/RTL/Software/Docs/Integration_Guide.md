@@ -14,9 +14,9 @@ The steps assume the user:
 ## 2. Required Files
 
 Ensure the following file is present in the SoC RTL directory:
-rtl/spi_mmio.v
-rtl/tb_soc.v
-Firmware/spi_test.c
+- rtl/spi_mmio.v
+- rtl/tb_soc.v
+- Firmware/spi_test.c
 
 No additional IP dependencies are required.
 
