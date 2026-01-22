@@ -150,4 +150,4 @@ sudo make flash
 The following observations confirm correct hardware operation using LED lights and the reset button on the FPGA.
 ![SPI Hardware Capture](https://github.com/K-Sai-2005/FPGA-internship/blob/main/images/image%20(22).png)
 
-[Hardware SPI Operation Video](https://github.com/K-Sai-2005/FPGA-internship/blob/main/images/WhatsApp%20Video%202026-01-21%20at%2010.34.25%20PM.mp4)
+[Hardware SPI Operation Video](images/WhatsApp%20Video%202026-01-21%20at%2010.34.25%20PM.mp4)
