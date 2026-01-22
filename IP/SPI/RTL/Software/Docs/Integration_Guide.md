@@ -15,6 +15,9 @@ The steps assume the user:
 
 Ensure the following file is present in the SoC RTL directory:
 rtl/spi_mmio.v
+rtl/tb_soc.v
+Firmware/spi_test.c
+
 No additional IP dependencies are required.
 
 ---
@@ -98,3 +101,53 @@ Signal	Expected Behavior
 - spi_mosi	Shifts out TXDATA
 - spi_miso	Sampled on rising edge
 - status.done	Asserts after 8 bits
+---
+## 8. Simulation Results
+
+The simulation confirms correct SPI protocol behavior:
+
+- Chip Select (spi_cs_n) is asserted low only during active transfers
+- SPI clock toggles for exactly 8 cycles per transaction
+- MOSI data matches software TXDATA
+- DONE flag asserts after transfer completion
+- Simulation Waveform Evidence
+
+### Simulation Result
+![Simulation](https://github.com/K-Sai-2005/FPGA-internship/blob/main/images/4e6101fe-112a-4299-b779-24618106c853.png)
+
+### Simulation Waveforms
+![SPI Simulation Waveform](https://github.com/K-Sai-2005/FPGA-internship/blob/main/images/8b857bd7-de06-48aa-ae56-b37dc6cb4d2f.png)
+
+![](https://github.com/K-Sai-2005/FPGA-internship/blob/main/images/643683ae-066b-4967-9871-d1b469ffb10f.png)
+
+![](https://github.com/K-Sai-2005/FPGA-internship/blob/main/images/92fac30b-802d-485f-882e-827591862be8.png)
+
+ ## 9. Hardware Integration Procedure
+
+After successful simulation validation, the SPI IP was integrated on FPGA hardware.
+
+Hardware Connections
+- SPI Signal	FPGA Connection
+- spi_sclk	FPGA Header / Test Pin
+- spi_mosi	External SPI Slave MOSI
+- spi_miso	External SPI Slave MISO
+- spi_cs_n	External SPI Slave CS
+
+Pin assignments were added in the FPGA constraint file as per board requirements.
+
+## 10. Hardware Programming
+
+The FPGA was programmed with the SPI-enabled SoC bitstream using the standard VSDSquadron flow.
+
+```
+make clean
+make build
+sudo make flash
+
+```
+## 11. Hardware Results
+
+The following observations confirm correct hardware operation using LED lights and the reset button on the FPGA.
+![SPI Hardware Capture](https://github.com/K-Sai-2005/FPGA-internship/blob/main/images/image%20(22).png)
+
+[Hardware SPI Operation Video](https://github.com/K-Sai-2005/FPGA-internship/blob/main/images/WhatsApp%20Video%202026-01-21%20at%2010.34.25%20PM.mp4)
